@@ -1,4 +1,6 @@
 package com.jeremy.mvc.controllers;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
@@ -17,10 +19,13 @@ public class BookController {
     public String showBook(Model model, @PathVariable("id") Long id  ) {
     	Book book = bookService.findBook(id);
     	model.addAttribute("book" , book);
-    	return "index.jsp";
-    	
-    	
-    	
+    	return "index.jsp";	
+    }
+    @RequestMapping("/books")
+    public String showBoosk(Model model) {
+    	List<Book> books = bookService.allBooks();
+    	model.addAttribute("books" , books);
+    	return "dashboard.jsp";	
     }
    
     
